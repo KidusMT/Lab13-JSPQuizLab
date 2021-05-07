@@ -18,8 +18,7 @@ public class Quiz {
 
     public static boolean checkAnswer(int ans, int quesIndx) {
         if (ans == answers[quesIndx]) {
-            if (score >= questions.length) score = 1;
-            else score++;
+            score++;
             return true;
         }
         return false;

@@ -50,12 +50,12 @@ public class QuizServlet extends HttpServlet {
                                 "<input style='padding: 10px; margin: 20px 0; width: 100px' type='submit'>" + "</div>" +
                                 "</form>"
                         );
-                        current_question.setValue(String.valueOf(curQst+1));
+                        current_question.setValue(String.valueOf(curQst + 1));
                     } else {
                         if (curQst < Quiz.getAllQuestions().length) { // if not last question
                             int nextQuestion = curQst + 1;
                             if (answer != null && !answer.isEmpty()) {
-                                Quiz.checkAnswer(Integer.parseInt(answer), curQst-1);
+                                Quiz.checkAnswer(Integer.parseInt(answer), curQst - 1);
                             }
                             out.println("<p>Your current score is " + Quiz.getScore() + ".</p>" +
                                     "<p>Guess the next number in the sequence.</p>" +
@@ -68,6 +68,9 @@ public class QuizServlet extends HttpServlet {
                             );
                             current_question.setValue(String.valueOf(nextQuestion));
                         } else {
+                            if (answer != null && !answer.isEmpty()) {
+                                Quiz.checkAnswer(Integer.parseInt(answer), curQst - 1);
+                            }
                             out.println("<p>Your current score is " + Quiz.getScore() + ".</p>" +
                                     "<p>You have completed the Number Quiz, with a score of " + Quiz.getScore() +
                                     " out of " + curQst + ".</p>");

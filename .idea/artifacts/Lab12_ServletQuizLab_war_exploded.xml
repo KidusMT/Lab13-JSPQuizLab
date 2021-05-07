@@ -1,0 +1,13 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Lab12-ServletQuizLab:war exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Lab12_ServletQuizLab_war_exploded</output-path>
+    <root id="root">
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Lab12-ServletQuizLab" />
+        </element>
+      </element>
+      <element id="javaee-facet-resources" facet="Lab12-ServletQuizLab/web/Web" />
+    </root>
+  </artifact>
+</component>

@@ -10,14 +10,29 @@ import java.io.PrintWriter;
  * @author KidusMT
  * Date: 5/7/2021
  */
-@WebServlet({"/answer"})
+//@WebServlet({"/answer"})
 public class QuizServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        this.doPost(req, resp);
+        String answer = req.getParameter("ans");
+
+//        HttpSession session = req.getSession();
+//        session.setAttribute("current_question", 0);
+//        Quiz quiz;
+//        if (session.getAttribute("quiz") == null) {
+//            quiz = new Quiz();
+//        } else {
+////            String answer = req.getParameter("answer");
+//            quiz = (Quiz) session.getAttribute("quiz");
+//            if (answer != null && !answer.isEmpty() && session.getAttribute("current_question") != null) {
+//                quiz.checkAnswer(Integer.parseInt(answer), (Integer) session.getAttribute("current_question"));
+//            }
+//        }
+//        session.setAttribute("quiz", quiz);
+
         // forwarding to jsp page
-//        req.getRequestDispatcher("/WEB-INF/index.jsp").forward(req, resp);
+        req.getRequestDispatcher("index.jsp").forward(req, resp);
 
 //        PrintWriter out = resp.getWriter();
 //        out.println("<!DOCTYPE html>");
@@ -83,27 +98,4 @@ public class QuizServlet extends HttpServlet {
 //        out.println("</html>");
     }
 
-    @Override
-    protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-//        super.doPost(req, resp);
-        String answer = req.getParameter("ans");
-//        Cookie current_question = new Cookie("current_question", "0");
-//        current_question.setMaxAge(15 * 60 * 24);// 15 min
-//        resp.addCookie(current_question);
-
-
-        HttpSession session = req.getSession();
-        session.setAttribute("current_question", 0);
-        Quiz quiz;
-        if (session.getAttribute("quiz") == null) {
-            quiz = new Quiz();
-        } else {
-//            String answer = req.getParameter("answer");
-            quiz = (Quiz) session.getAttribute("quiz");
-            if (answer != null && !answer.isEmpty() && session.getAttribute("current_question") != null) {
-                quiz.checkAnswer(Integer.parseInt(answer), (Integer) session.getAttribute("current_question"));
-            }
-        }
-        session.setAttribute("quiz", quiz);
-    }
 }

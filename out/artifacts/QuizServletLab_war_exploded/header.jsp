@@ -6,4 +6,3 @@
   To change this template use File | Settings | File Templates.
 --%>
 <h1>The Number Quiz</h1>
-<p>Your current score is 0.</p>

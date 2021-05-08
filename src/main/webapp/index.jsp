@@ -19,43 +19,10 @@
 <div style="align-content: center">
     <%@ include file="header.jsp" %>
 
-    <%--  DECLARATIONS  --%>
-    <%!
-        Quiz quiz;
-        int current_question = 0;
-    %>
-
     <%--  SCRIPTLETS  --%>
     <%
-        String answer = request.getParameter("ans");
-
-        if (session.getAttribute("quiz") == null) {
-            quiz = new Quiz();
-        } else {
-            quiz = (Quiz) session.getAttribute("quiz");
-            if (answer != null && !answer.isEmpty() && session.getAttribute("current_question") != null) {
-                quiz.checkAnswer(Integer.parseInt(answer), (Integer) session.getAttribute("current_question") - 1);
-            }
-        }
-        session.setAttribute("quiz", quiz);
-
-        if (session.getAttribute("current_question") != null) {
-            current_question = (Integer) session.getAttribute("current_question");
-        }
-
-        if (current_question >= quiz.getAllQuestions().length) {
-
-    %>
-
-    <%--  EXPRESSIONS  --%>
-    <%=
-    "<p>You have completed the Number Quiz, with a score of " + quiz.getScore() + " out of 5.</p>"
-    %>
-    <%--  SCRIPTLETS  --%>
-    <%
-        session.removeAttribute("quiz");
-        session.setAttribute("current_question", 0);
-    } else {
+        Quiz quiz = (Quiz) session.getAttribute("quiz");
+        int current_question = (Integer) session.getAttribute("current_question");
     %>
     <form action="/QuizServletLab_war_exploded/answer" method="get">
         <div style="display: inline-flex; flex-direction: column">
@@ -81,10 +48,6 @@
             <input style="padding: 10px; margin: 20px 0; width: 100px" type="submit">
         </div>
     </form>
-    <%--  SCRIPTLETS  --%>
-    <%
-        }
-    %>
 </div>
 
 </body>
